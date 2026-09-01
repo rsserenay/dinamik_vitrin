@@ -1,0 +1,42 @@
+name: dinamik_vitrin
+description: "MVC mimarisi, GetX, Firebase Remote Config ve yerel asset disiplinini pekiştiren e-ticaret vitrin uygulaması."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Anayasa gereği izin verilen tek harici paketler:
+  get: ^4.6.6
+  http: ^1.2.1
+  firebase_core: ^3.1.0
+  firebase_remote_config: ^5.1.0
+
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Yerel görseller (assets/images klasörü)
+  assets:
+    - assets/images/
+
+  # Yerel font: Poppins (Google Fonts paketi YASAK, dosyalar assets/fonts içinde)
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
