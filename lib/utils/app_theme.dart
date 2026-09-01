@@ -20,7 +20,7 @@ class AppThemes {
     ),
     scaffoldBackgroundColor: const Color(0xFFF7F7FB),
     cardColor: Colors.white,
-    shadowColor: Colors.black.withOpacity(0.15),
+    shadowColor: Colors.black.withValues(alpha: 0.15),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,
@@ -37,7 +37,7 @@ class AppThemes {
     ),
     scaffoldBackgroundColor: const Color(0xFF121212),
     cardColor: const Color(0xFF1E1E1E),
-    shadowColor: Colors.black.withOpacity(0.4),
+    shadowColor: Colors.black.withValues(alpha: 0.4),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       elevation: 0,

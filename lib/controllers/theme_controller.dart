@@ -5,7 +5,6 @@
 // uygulamanın temasını değiştirmek. View sadece isDarkMode.value'ya bakıp
 // hangi ikonu (ay/güneş) göstereceğine karar verir; setState YOKTUR.
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../utils/app_theme.dart';
 

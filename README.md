@@ -45,4 +45,3 @@ flutter run
 - **Aşama 2**: AppBar'a Ay/Güneş ikonu + `Get.changeTheme()` ile Dark/Light geçişi.
 - **Aşama 3**: Firebase Remote Config ile `show_promo_banner` / `promo_text`.
 
-Hazır olduğunda "Aşama 2'ye geç" de, devam edelim.

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/product_controller.dart';
 import '../controllers/theme_controller.dart';
+import 'promo_banner.dart';
 
 class HomeView extends GetView<ProductController> {
   const HomeView({super.key});
@@ -23,8 +24,6 @@ class HomeView extends GetView<ProductController> {
       appBar: AppBar(
         title: const Text('Dinamik Vitrin'),
         actions: [
-          // Aşama 2: Dark/Light mod geçiş ikonu. Mantık ThemeController'da,
-          // burada sadece hangi ikonun gösterileceğine (Obx ile) karar veriliyor.
           Obx(
             () => IconButton(
               icon: Icon(
@@ -41,39 +40,48 @@ class HomeView extends GetView<ProductController> {
           ),
         ],
       ),
-      body: Obx(() {
-        // 1) Yükleniyor durumu
-        if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        // 2) Hata durumu -> yerel (assets) görsel gösterilir, internete gerek yok
-        if (controller.hasError.value) {
-          return _ErrorState(theme: theme, onRetry: controller.refreshProducts);
-        }
-
-        // 3) Boş liste durumu -> yerel (assets) görsel gösterilir
-        if (controller.products.isEmpty) {
-          return _EmptyState(theme: theme);
-        }
-
-        // 4) Veri geldi -> ürün ızgarası
-        return GridView.builder(
-          padding: const EdgeInsets.all(12),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.62,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-          ),
-          itemCount: controller.products.length,
-          itemBuilder: (context, index) {
-            final product = controller.products[index];
-            return _ProductCard(theme: theme, title: product.title, price: product.price, imageUrl: product.image, category: product.category);
-          },
-        );
-      }),
+      body: Column(
+        children: [
+          // Aşama 3: İçeriği koda gömülü olmayan, Remote Config'ten gelen banner.
+          const PromoBanner(),
+          Expanded(child: _ProductGrid(theme: theme)),
+        ],
+      ),
     );
+  }
+}
+
+class _ProductGrid extends GetView<ProductController> {
+  const _ProductGrid({required this.theme});
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      if (controller.hasError.value) {
+        return _ErrorState(theme: theme, onRetry: controller.refreshProducts);
+      }
+      if (controller.products.isEmpty) {
+        return _EmptyState(theme: theme);
+      }
+      return GridView.builder(
+        padding: const EdgeInsets.all(12),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.62,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        itemCount: controller.products.length,
+        itemBuilder: (context, index) {
+          final product = controller.products[index];
+          return _ProductCard(theme: theme, title: product.title, price: product.price, imageUrl: product.image, category: product.category);
+        },
+      );
+    });
   }
 }
 
@@ -100,7 +108,7 @@ class _ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: theme.shadowColor.withOpacity(0.08),
+            color: theme.shadowColor.withValues(alpha: 0.08),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -114,7 +122,6 @@ class _ProductCard extends StatelessWidget {
             child: Image.network(
               imageUrl,
               fit: BoxFit.contain,
-              // Görsel yüklenemezse (internet koptuysa) yerel asset gösterilir.
               errorBuilder: (context, error, stackTrace) => Padding(
                 padding: const EdgeInsets.all(24),
                 child: Image.asset('assets/images/no_connection.png'),

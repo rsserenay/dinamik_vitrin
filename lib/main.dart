@@ -1,16 +1,28 @@
 // lib/main.dart
 //
-// Aşama 2 kapsamı: Get.changeTheme() ile Dark/Light mod geçişi eklendi.
-// Başlangıç teması AppThemes.lightTheme; AppBar'daki ikona basıldığında
-// ThemeController.toggleTheme() çağrılır ve tema anında değişir.
+// Aşama 3 kapsamı: Firebase.initializeApp() eklendi. Firebase'e ulaşılamazsa
+// (internet yok, henüz `flutterfire configure` çalıştırılmadı vb.) uygulama
+// ÇÖKMEZ; try/catch ile yutulur ve RemoteConfigController zaten kendi
+// içinde default değerlere düşer.
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'bindings/initial_binding.dart';
+import 'firebase_options.dart';
 import 'utils/app_theme.dart';
 import 'views/home_view.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (_) {
+    // Hata Toleransı: Firebase kurulmamış/erişilemiyor olsa bile uygulama
+    // açılmaya devam eder; Remote Config default değerlerle çalışır.
+  }
+
   runApp(const DinamikVitrinApp());
 }
 
