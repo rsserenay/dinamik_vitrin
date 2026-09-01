@@ -1,1 +1,1 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"dinamik-vitrin","appId":"1:413566562942:android:52ef0677f3fff1f6491e2f","fileOutput":"android/app/google-services.json"}}}}}
+{"flutter":{"platforms":{"android":{"default":{"projectId":"dinamik-vitrin","appId":"1:413566562942:android:52ef0677f3fff1f6491e2f","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"dinamik-vitrin","configurations":{"android":"1:413566562942:android:52ef0677f3fff1f6491e2f"}}}}}}
