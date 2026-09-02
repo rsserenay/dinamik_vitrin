@@ -1,10 +1,3 @@
-// lib/controllers/product_controller.dart
-//
-// Katman: CONTROLLER
-// Sorumluluğu: Fake Store API'den veri çekmek, durum (loading/error/data)
-// yönetimini yapmak. View bu controller'ı sadece "dinler" (Obx / GetView),
-// hiçbir setState veya iş mantığı View içinde yazılmaz.
-
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

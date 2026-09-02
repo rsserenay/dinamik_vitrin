@@ -1,11 +1,3 @@
-// lib/views/home_view.dart
-//
-// Katman: VIEW
-// Sorumluluğu: Sadece Controller'daki reaktif state'i (Obx) dinleyip ekrana
-// basmak. Burada setState YOKTUR, network çağrısı YOKTUR, iş mantığı YOKTUR.
-// Renkler HER ZAMAN Theme.of(context) üzerinden okunur (Colors.black /
-// Colors.white gibi hardcoded değerler kesinlikle kullanılmaz).
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/product_controller.dart';

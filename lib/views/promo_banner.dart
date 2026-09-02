@@ -1,5 +1,3 @@
-// lib/views/widgets/promo_banner.dart
-//
 // Katman: VIEW (yardımcı widget)
 // Sorumluluğu: RemoteConfigController'ı dinleyip show_promo_banner true ise
 // promo_text'i göstermek. İçerik hiçbir şekilde koda gömülü (hardcoded)

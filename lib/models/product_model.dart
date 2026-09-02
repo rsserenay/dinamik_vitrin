@@ -1,9 +1,3 @@
-// lib/models/product_model.dart
-//
-// Katman: MODEL
-// Sorumluluğu: Sadece veri şeklini (JSON <-> Dart nesnesi) tanımlamak.
-// Burada HİÇBİR iş mantığı (network çağrısı, UI kararı vb.) bulunmaz.
-
 class ProductModel {
   final int id;
   final String title;

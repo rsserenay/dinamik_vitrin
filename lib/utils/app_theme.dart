@@ -1,10 +1,3 @@
-// lib/utils/app_theme.dart
-//
-// Not: Bu dosya bir "controller" veya "view" değil, sadece statik tema
-// verisidir (renk paleti + tipografi tanımı). MVC ayrımını bozmaz; View'lar
-// buradaki renklere DOĞRUDAN değil, her zaman Theme.of(context) üzerinden
-// erişir. Hiçbir yerde Colors.black / Colors.white widget'a hardcoded verilmez.
-
 import 'package:flutter/material.dart';
 
 class AppThemes {
@@ -12,14 +5,14 @@ class AppThemes {
 
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    fontFamily: 'Roboto',
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xFF6C5CE7),
       brightness: Brightness.light,
     ),
     scaffoldBackgroundColor: const Color(0xFFF7F7FB),
-    cardColor: Colors.white,
+    cardColor: Colors.white.withValues(alpha: 0.9),
     shadowColor: Colors.black.withValues(alpha: 0.15),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
@@ -29,7 +22,7 @@ class AppThemes {
 
   static final ThemeData darkTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    fontFamily: 'Roboto',
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xFF6C5CE7),
